@@ -40,7 +40,8 @@
             --nav-background: rgba(45, 55, 72, 0.95); 
             --hero-gradient-start: #4a0e7e; 
             --hero-gradient-end: #1a0833;
-            --footer-text: var(--text-color);
+            /* FIX: Changed dark mode footer text to use the --gray variable for better contrast */
+            --footer-text: var(--gray); 
         }
 
         body {
@@ -449,6 +450,7 @@
         @media (max-width: 768px) {
             /* Fix: Added large bottom padding to ensure footer is visible above OS navigation bar */
             #contact {
+                /* Increased padding-bottom to ensure clearance for the footer */
                 padding-bottom: 8rem; 
             }
             
