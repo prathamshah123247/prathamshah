@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pratham Shah - AI & Cybersecurity Professional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            /* Light Mode Colors */
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #3b82f6;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --background: var(--light);
+            --text-color: var(--dark);
+            --card-background: white;
+            --nav-background: rgba(255, 255, 255, 0.95);
+            --hero-gradient-start: #667eea;
+            --hero-gradient-end: #764ba2;
+            --footer-text: white;
+        }
+        body.dark-mode {
+            /* Dark Mode Colors */
+            --primary: #60a5fa; 
+            --secondary: #3b82f6; 
+            --accent: #93c5fd;
+            --dark: #e2e8f0; 
+            --light: #1e293b; 
+            --gray: #94a3b8; 
+            --background: #1a202c; 
+            --text-color: var(--dark);
+            --card-background: #2d3748; 
+            --nav-background: rgba(45, 55, 72, 0.95); 
+            --hero-gradient-start: #4a0e7e; 
+            --hero-gradient-end: #1a0833;
+            --footer-text: var(--text-color);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--background);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        /* Navigation */
+        nav {
+            background: var(--nav-background);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: background 0.3s ease;
+        }
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center; 
+            margin: 0 auto;
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Dark Mode Toggle Switch */
+        .theme-switch-wrapper {
+            display: flex;
+            align-items: center;
+            margin-left: 2rem;
+            position: relative;
+        }
+        .theme-switch {
+            display: inline-block;
+            height: 24px;
+            position: relative;
+            width: 48px;
+        }
+        .theme-switch input {
+            display:none;
+        }
+        .slider {
+            background-color: var(--gray);
+            bottom: 0;
+            cursor: pointer;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            background-color: #fff;
+            bottom: 4px;
+            content: "";
+            height: 16px;
+            left: 4px;
+            position: absolute;
+            width: 16px;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+        .slider.round {
+            border-radius: 34px;
+        }
+        .slider.round:before {
+            border-radius: 50%;
+        }
+        .theme-switch-wrapper .icon {
+            font-size: 1.2rem;
+            margin-left: 0.5rem;
+            color: var(--text-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            /* Ensures hero takes full vertical space on mobile without overflowing */
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--hero-gradient-start) 0%, var(--hero-gradient-end) 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 60px;
+            transition: background 0.3s ease;
+        }
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        .hero-content .highlight {
+            font-size: 1.2rem;
+            background: rgba(255,255,255,0.2);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 1rem 0;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+        /* Sections */
+        section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2rem;
+        }
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .about-text p {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .skill-card {
+            background: var(--card-background);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s, background 0.3s ease;
+        }
+        .skill-card:hover {
+            transform: translateY(-10px);
+        }
+        .skill-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .skill-card ul {
+            list-style: none;
+        }
+        .skill-card li {
+            padding: 0.5rem 0;
+            color: var(--text-color);
+        }
+        .skill-card li:before {
+            content: "▹ ";
+            color: var(--primary);
+            font-weight: bold;
+        }
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .project-card {
+            background: var(--card-background);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s, background 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        .project-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            transition: background 0.3s ease;
+        }
+        /* Project Header Link Styling */
+        .project-header a {
+            color: white;
+            text-decoration: underline; 
+            transition: color 0.3s ease;
+        }
+        .project-header a:hover {
+            text-decoration: none;
+        }
+        .project-body {
+            padding: 2rem;
+            color: var(--text-color);
+        }
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .tag {
+            background: var(--light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--primary);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        /* Achievements */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        .achievement-card {
+            background: var(--card-background);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+        .achievement-card h3 {
+            margin-bottom: 0.5rem;
+        }
+        /* Achievement Link Styling */
+        .achievement-card a {
+            color: var(--primary); 
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .achievement-card a:hover {
+            text-decoration: underline;
+        }
+
+        .achievement-type {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            transition: background 0.3s ease;
+        }
+        /* Publications */
+        .publications-list {
+            background: var(--card-background);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background 0.3s ease;
+        }
+        .publication-item {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--light);
+            transition: background 0.3s;
+            color: var(--text-color);
+        }
+        .publication-item:hover {
+            background: var(--light);
+        }
+        .publication-item:last-child {
+            border-bottom: none;
+        }
+        .publication-item h3 {
+            margin-bottom: 0.5rem;
+        }
+        .publication-item a {
+            color: var(--primary); 
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .publication-item a:hover {
+            text-decoration: underline;
+        }
+        .publication-meta {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        .contact-info {
+            background: var(--card-background);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background 0.3s ease;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            color: var(--text-color);
+        }
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            transition: background 0.3s ease;
+        }
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--footer-text); 
+            text-align: center;
+            padding: 2rem;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        footer p {
+            color: var(--footer-text); 
+            opacity: 0.8; 
+            transition: color 0.3s ease, opacity 0.3s ease;
+        }
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Responsive Overrides (Mobile) */
+        @media (max-width: 768px) {
+            /* Hide the entire navigation link list on mobile */
+            nav ul {
+                display: none;
+            }
+            /* Re-center only the dark mode toggle (if you wanted to show it) */
+            nav .container {
+                justify-content: flex-end; 
+                padding: 0.8rem 1rem;
+            }
+            .theme-switch-wrapper {
+                 margin-left: 0;
+            }
+
+            /* Hero Section Styling for small screens */
+            .hero {
+                min-height: 80vh; /* Use 80% to ensure content fits */
+                padding: 1rem;
+                margin-top: 0; /* Remove top margin */
+            }
+            .hero-content h1 {
+                font-size: 2.5rem; /* Smaller H1 */
+            }
+            .hero-content .subtitle {
+                font-size: 1.2rem;
+            }
+            .hero-content .highlight {
+                font-size: 1rem;
+                padding: 0.8rem 1.5rem;
+            }
+            .cta-buttons {
+                flex-direction: column; /* Stack buttons */
+                gap: 0.8rem;
+            }
+            .btn {
+                width: 100%;
+            }
+
+            /* Force all 2/3/4 column grids to stack */
+            .about-content,
+            .skills-grid,
+            .projects-grid,
+            .achievements-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem; /* Reduce gap on mobile */
+            }
+
+            section {
+                padding: 1rem;
+                margin: 2rem auto; /* Less vertical space between sections */
+            }
+
+            h2 {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div></div> 
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="theme-switch-wrapper">
+                    <label class="theme-switch" for="checkbox">
+                        <input type="checkbox" id="checkbox" />
+                        <div class="slider round"></div>
+                    </label>
+                    <span class="icon">☀️</span>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Pratham Shah</h1>
+            <p class="subtitle">AI/ML Engineer & Cybersecurity Specialist</p>
+            <div class="highlight">
+                🏆 Global Winner - Intel AI Challenge 2025
+            </div>
+            <p style="margin-top: 1rem; font-size: 1.1rem;">Project Management | Deepfake Detection | Cybersecurity Research</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>I'm a BTech Cyber Security student at Shah and Anchor Kutchhi Engineering College with a passion for developing innovative AI/ML solutions and cybersecurity systems.</p>
+                <p>As a project leader, I've successfully managed cross-functional teams to deliver award-winning solutions including TrustTrace (deepfake detection platform), LinuxAdmin (security management system), and VerifyIT (misinformation detection).</p>
+                <p>My work has been recognized globally with the Intel AI Challenge 2025 victory, and I've published 9 research papers in Scopus-indexed journals along with securing a patent in cybersecurity and AI domains.</p>
+                <p><strong>Current Focus:</strong> Leveraging technical expertise to drive complex technology initiatives in project management roles while continuing research in AI safety and cybersecurity.</p>
+            </div>
+            <div class="about-stats">
+                <div class="skill-card">
+                    <h3>📊 By The Numbers</h3>
+                    <ul>
+                        <li>9 Published Research Papers</li>
+                        <li>3 Patents (1 Published, 2 Approved)</li>
+                        <li>97.28% Accuracy in AI Models</li>
+                        <li>500+ Users Served</li>
+                        <li>200+ Workshop Participants</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>💻 Programming</h3>
+                <ul>
+                    <li>Python</li>
+                    <li>C</li>
+                    <li>HTML/CSS/JavaScript</li>
+                    <li>Bash</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>🛡️ Security Tools</h3>
+                <ul>
+                    <li>Kali Linux</li>
+                    <li>BurpSuite</li>
+                    <li>Wireshark</li>
+                    <li>Metasploit</li>
+                    <li>Wazuh SIEM</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>🤖 AI/ML Frameworks</h3>
+                <ul>
+                    <li>Django & Flask</li>
+                    <li>TensorFlow</li>
+                    <li>CNN</li>
+                    <li>BERT</li>
+                    <li>Pandas & NumPy</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>🔐 Cybersecurity</h3>
+                <ul>
+                    <li>Penetration Testing</li>
+                    <li>Vulnerability Assessment</li>
+                    <li>GRC & IDR</li>
+                    <li>Security Auditing</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <h3><a href="https://trusttrace.net.in/" target="_blank">🎭 TrustTrace</a></h3>
+                    <p>Multimedia Deepfake Detection Platform</p>
+                </div>
+                <div class="project-body">
+                    <p>Award-winning platform supporting image, video, and audio deepfake detection with ensemble ML models.</p>
+                    <p><strong>Results:</strong> 92% accuracy, 500+ active users</p>
+                    <p><strong>Recognition:</strong> Global Winner - Intel AI Challenge 2025</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Django</span>
+                        <span class="tag">ML</span>
+                        <span class="tag">Bootstrap5</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>🐧 LinuxAdmin </h3>
+                    <p>Air-Gapped Active Directory System</p>
+                </div>
+                <div class="project-body">
+                    <p>Enterprise security system with master-slave architecture, centralized monitoring, and automated threat detection.</p>
+                    <p><strong>Features:</strong> Port scanning detection, privilege escalation alerts, SIEM integration</p>
+                    <div class="project-tags">
+                        <span class="tag">Bash</span>
+                        <span class="tag">Wazuh</span>
+                        <span class="tag">SIEM</span>
+                        <span class="tag">NumPy</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>✓ VerifyIT</h3>
+                    <p>Fake News Detection Platform</p>
+                </div>
+                <div class="project-body">
+                    <p>Multi-modal fact-checking platform using BERT transformers for text analysis, image reverse search, and URL verification.</p>
+                    <p><strong>Accuracy:</strong> 88% classification accuracy</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Flask</span>
+                        <span class="tag">BERT</span>
+                        <span class="tag">Ollama</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="achievements">
+        <h2>Achievements & Recognition (Click Titles to View Document)</h2>
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <span class="achievement-type">🌍 Global Competition</span>
+                <h3><a href="https://drive.google.com/file/d/1kqX25ViinUQMjZVYrkDuyfuEU366hkwy/view?usp=drive_link" target="_blank">Intel AI Challenge 2025</a></h3>
+                <p><strong>Winner (Global Level)</strong></p>
+                <p>Project: Deepfake Detective - Securing Social Integrity, Uncovering Faux AI Content</p>
+            </div>
+            <div class="achievement-card">
+                <span class="achievement-type">🏆 National Competition</span>
+                <h3><a href="https://drive.google.com/file/d/1jN7jCzbvWAyAeESicgFTozyVTwsdOMAY/view?usp=drive_link" target="_blank">CyberChallenge 2025</a></h3>
+                <p><strong>Winner</strong> - Delhi Police (View Certificate: <a href="https://drive.google.com/file/d/1eqEnTqD6DdJqKZjmqMFBF08Tm0XUn6qF/view?usp=drive_link" target="_blank">Proof</a>)</p>
+                <p>Theme: Counteracting Misinformation and Fake News</p>
+            </div>
+            <div class="achievement-card">
+                <span class="achievement-type">🥇 Competition Win</span>
+                <h3><a href="https://drive.google.com/file/d/1YlqgHX8p5vox-Xl0N1BwNFA8Fq-bPghP/view?usp=drive_link" target="_blank">Tantravihar 2025</a></h3>
+                <p><strong>Winner</strong> - Vidyalankar Institute of Technology</p>
+                <p>Project: TrustTrace - Multimedia Deepfake Detection (Award Proof: <a href="https://drive.google.com/file/d/1HXpofNPHnRVBmbUrM7XnAzwng3xkBTuM/view?usp=drive_link" target="_blank">View</a>)</p>
+            </div>
+            <div class="achievement-card">
+                <span class="achievement-type">🏅 Quality Excellence</span>
+                <h3>CCQC Gold Trophy</h3>
+                <p><strong>Gold Trophy</strong> - Quality Circle Forum of India</p>
+                <p>Projects: <a href="https://drive.google.com/file/d/1M3s2eQlqkODIlB9IF6q-h2F90rGllbxo/view?usp=drive_link" target="_blank">TrustTrace</a> & <a href="https://drive.google.com/file/d/1UT_ZmEwoiE7QvMw1Ujb9aXgBKAbsbf__/view?usp=drive_link" target="_blank">LinuxAdmin</a></p>
+            </div>
+            <div class="achievement-card">
+                <span class="achievement-type">🎯 CTF Competitions</span>
+                <h3>Capture The Flag Events</h3>
+                <p>AIR 40 - Pentathon 2025</p>
+                <p>AIR 36 - DawgCTF 2025</p>
+            </div>
+        </div>
+    </section>
+    <section id="publications">
+        <h2>Research Publications & Patents (Click Titles to View Document)</h2>
+                <h3 style="margin: 2rem 0 1rem 0; color: var(--secondary);">📄 Published Research (9 Papers)</h3>
+        <div class="publications-list">
+            <div class="publication-item">
+                <h3><a href="https://drive.google.com/file/d/1fOIWOq6Dw8Q02NTbXPVmLWYQZ9gSY5mf/view?usp=sharing" target="_blank">ResNet50 DeepFake Detector: Unmasking Reality</a></h3>
+                <p class="publication-meta">Indian Journal of Science and Technology, 2024 | Scopus-Indexed</p>
+                <p>Achieved 97% accuracy in deepfake detection using ResNet50 with image scraping feature.</p>
+            </div>
+            <div class="publication-item">
+                <h3><a href="https://drive.google.com/file/d/12G34_BuDykeWevbD3pq5fglcvZiwF1b-/view?usp=drive_link" target="_blank">Deepfake Detection Using EfficientNetB7: Efficacy, Efficiency, and Adaptability</a></h3>
+                <p class="publication-meta">International Journal of Intelligent Systems and Applications in Engineering, 2024</p>
+                <p>Comprehensive analysis of EfficientNetB7 achieving 85% accuracy in deepfake detection.</p>
+            </div>
+            <div class="publication-item">
+                <h3><a href="https://drive.google.com/file/d/1HM0ARx2KSUekPAn6bTidpb0xyT2rlaYV/view?usp=drive_link" target="_blank">Securing Visual Integrity: EfficientNetB4-Based Solution with Attention Layers </a></h3>
+                <p class="publication-meta">IJISAE, 2024</p>
+                <p>Achieved 94% accuracy on FaceForensics and DFDC datasets using attention mechanisms and Siamese training.</p>
+            </div>
+            <div class="publication-item">
+                <h3><a href="https://drive.google.com/file/d/1OinQU7kVaJSHVDtPwBvGlhgEaHih9Ngz/view?usp=drive_link" target="_blank">Advancements in Video Deepfake Detection: Integration of ResNet50, EfficientNetB7, and EfficientNetAutoAttB4</a></h3>
+                <p class="publication-meta">IJISAE, 2024</p>
+                <p>Ensemble model approach for comprehensive deepfake detection across multiple architectures.</p>
+            </div>
+            <div class="publication-item">
+                <h3><a href="https://drive.google.com/file/d/1i4ok-zjJGvpyApluESptTTB-42dezABt/view?usp=drive_link" target="_blank">Improving Deepfake Audio Detection: A Support Vector Machine Approach with MFCCs</a></h3>
+                <p class="publication-meta">IJISAE, 2024</p>
+                <p>Achieved 97.28% accuracy in audio deepfake detection using SVM and Mel-Frequency Cepstral Coefficients.</p>
+            </div>
+            <div class="publication-item">
+                <h3><a href="https://drive.google.com/file/d/19Zsyw546FrlEXPwDI85CFjYQgSdLz-6q/view?usp=drive_link" target="_blank">Harmonizing Algorithms: Enhancing Audio Deepfake Detection</a></h3>
+                <p class="publication-meta">IJISAE, 2024</p>
+                <p>Multi-faceted approach integrating MFCC-based SVM and Neural Networks for audio verification.</p>
+            </div>
+            <div class="publication-item">
+                <h3><a href="https://drive.google.com/file/d/1Oa6i_yD1724SBykKb5DOnB3P16wAQ75v/view?usp=drive_link" target="_blank">Impact of Deep Learning on Cybersecurity: Advancements, Challenges, and Ethical Implications</a></h3>
+                <p class="publication-meta">IJISAE, 2024</p>
+                <p>Comprehensive analysis of deepfake detection methodologies using autoencoders, GANs, and CNNs.</p>
+            </div>
+            <div class="publication-item">
+                <h3><a href="https://drive.google.com/file/d/1UilUj-9DPIg8Um_G-IgnO2ZkwqAXAtZ_/view?usp=drive_link" target="_blank">Deepfake Technology and Image Forensics: Advancements, Challenges, and Ethical Implications</a></h3>
+                <p class="publication-meta">IJISAE, 2024</p>
+                <p>Comprehensive analysis of deepfake detection methodologies using autoencoders, GANs, and CNNs.</p>
+            </div>
+            <div class="publication-item">
+                <h3><a href="https://drive.google.com/file/d/1unrGPa3hG_VzQeLqwCr18Om6hieQaRXv/view?usp=drive_link" target="_blank">Multi-Modal Misinformation Detection System and Method</a></h3>
+                <p class="publication-meta">IJISAE, 2024</p>
+                <p>System for detecting potential misinformation through manipulated content across multiple media types.</p>
+            </div>
+            
+        </div>
+        <h3 style="margin: 3rem 0 1rem 0; color: var(--secondary);">📜 Patents (Click Titles to View Document)</h3>
+        <div class="publications-list">
+            <div class="publication-item">
+                <h3><a href="https://drive.google.com/file/d/1h3OE0UCZ6ks1pSZIat1Qk6ot4FWAifWg/view?usp=drive_link" target="_blank">Deep-Fake Detection System and Method</a></h3>
+                <p class="publication-meta"><strong>Patent No. 557207</strong> | Published: December 2024</p>
+                <p>Government of India Patent Office | Filed: April 10, 2024</p>
+                <p>System and method for detecting potential misinformation spread through manipulated content.</p>
+            </div>
+            <div class="publication-item">
+                <h3><a href="https://drive.google.com/file/d/1unrGPa3hG_VzQeLqwCr18Om6hieQaRXv/view?usp=drive_link" target="_blank">Multi-Modal Deepfake Detection (Approved)</a></h3>
+                <p class="publication-meta">Status: Approved, 2024</p>
+                <p>Advanced detection system for multimedia deepfake identification.</p>
+            </div>
+            <div class="publication-item">
+                <h3><a href="https://drive.google.com/file/d/1unrGPa3hG_VzQeLqwCr18Om6hieQaRXv/view?usp=drive_link" target="_blank">Network Security Management System (Approved)</a></h3>
+                <p class="publication-meta">Status: Approved, 2024</p>
+                <p>Centralized security and management system for network-connected devices.</p>
+            </div>
+        </div>
+    </section>
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="publications-list">
+            <div class="publication-item">
+                <h3>Cybersecurity Intern</h3>
+                <p class="publication-meta">CyberPeace Centre of Excellence (COE) | October 2023 - Present</p>
+                <p>• Enhanced cybersecurity awareness via digital safety workshops</p>
+                <p>• Reached 200+ participants across multiple events</p>
+                <p>• Conducted training sessions on emerging cyber threats</p>
+            </div>
+            <div class="publication-item">
+                <h3>Freelance Web Developer</h3>
+                <p class="publication-meta">Self-Employed | June 2025 - Present</p>
+                <p>• Developed responsive and secure websites for small businesses</p>
+                <p>• Technologies: HTML, CSS, JavaScript, Shopify</p>
+                <p>• Focus on security best practices and user experience</p>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3 style="margin-bottom: 1rem;">Contact Information</h3>
+                                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div>
+                        <strong>Email</strong>
+                        <p>prathamshah123247@gmail.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div>
+                        <strong>Phone</strong>
+                        <p>+91-9699143903</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🔗</div>
+                    <div>
+                        <strong>LinkedIn</strong>
+                        <p><a href="https://www.linkedin.com/in/prathamshah2407/" target="_blank">linkedin.com/in/prathamshah2407</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">💻</div>
+                    <div>
+                        <strong>GitHub</strong>
+                        <p><a href="https://github.com/prathamshah123247" target="_blank">github.com/prathamshah123247</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-info">
+                <h3 style="margin-bottom: 1rem;">Let's Connect</h3>
+                <p style="margin-bottom: 2rem; color: var(--gray);">
+                    I'm always interested in discussing new projects, creative ideas, or opportunities to be part of your vision. Whether you're looking for a project manager with technical expertise or need cybersecurity consultation, feel free to reach out!
+                </p>
+                <a href="mailto:prathamshah123247@gmail.com" class="btn btn-primary" style="width: 100%; text-align: center;">Send Email</a>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2025 Pratham Shah. All Rights Reserved.</p>
+        <p style="margin-top: 1rem; opacity: 0.8;">BTech Cyber Security | Shah and Anchor Kutchhi Engineering College</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Global Winner - Intel AI Challenge 2025 🏆</p>
+    </footer>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Dark Mode Toggle Logic
+        const toggleSwitch = document.getElementById('checkbox');
+        const currentTheme = localStorage.getItem('theme');
+        const iconSpan = document.querySelector('.theme-switch-wrapper .icon');
+
+        if (currentTheme) {
+            document.body.classList.add(currentTheme);
+            if (currentTheme === 'dark-mode') {
+                toggleSwitch.checked = true;
+                iconSpan.textContent = '🌙'; // Moon icon for dark mode
+            } else {
+                iconSpan.textContent = '☀️'; // Sun icon for light mode
+            }
+        }
+
+        function switchTheme(e) {
+            if (e.target.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark-mode');
+                iconSpan.textContent = '🌙';
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light-mode');
+                iconSpan.textContent = '☀️';
+            }
+        }
+        toggleSwitch.addEventListener('change', switchTheme);
+    </script>
+</body>
+</html>
