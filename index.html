@@ -447,30 +447,27 @@
         }
         /* Responsive Overrides (Mobile) */
         @media (max-width: 768px) {
-            /* Fix: Ensure the entire navigation container is structured for mobile */
+            /* Fix: Added large bottom padding to ensure footer is visible above OS navigation bar */
+            #contact {
+                padding-bottom: 8rem; 
+            }
+            
             nav .container {
-                /* Changed to justify-content: space-between to clearly define areas if logo was present, but will just center the list if only one item is present */
                 justify-content: space-between; 
                 padding: 0.8rem 1rem;
             }
-            /* The list is the main element, and we'll only hide the links within it, keeping the toggle */
             nav ul {
-                /* Re-enabled flex display for the list container */
                 display: flex;
-                /* Push the toggle switch to the right/end */
                 margin-left: auto;
                 margin-right: 0;
             }
-            /* Hide individual navigation links on mobile */
             nav ul li:not(.theme-switch-wrapper) {
                 display: none;
             }
-            /* Ensure the toggle wrapper is displayed as list item */
             nav ul li.theme-switch-wrapper {
-                display: flex; /* Overrides hidden rule if applied globally */
+                display: flex; 
                 margin-left: 0;
             }
-
 
             /* Hero Section Styling for small screens */
             .hero {
@@ -888,12 +885,10 @@
             toggleSwitch.checked = true;
             iconSpan.textContent = '🌙';
         } else if (currentTheme === 'light-mode') {
-             // Ensure light mode is set if preferred (useful if system default changes)
             document.body.classList.remove('dark-mode');
             toggleSwitch.checked = false;
             iconSpan.textContent = '☀️';
         } else {
-            // Check system preference if no localStorage value is set
              if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
                 document.body.classList.add('dark-mode');
                 toggleSwitch.checked = true;
